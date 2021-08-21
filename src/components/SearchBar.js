@@ -2,7 +2,11 @@ import React from 'react';
 
 class SearchBar extends React.Component {
     render() {
-        return <div>SEARCH BAR</div>
+        return <div>
+            <form>
+                <input type="text" placeholder="Search..." />
+            </form>
+        </div>
     };
 }
 
