@@ -2,17 +2,23 @@ import React from "react";
 
 class SearchBar extends React.Component {
   // This is a callback function that is called when the user types in the search bar.
-    // Making use of state so this function is no longer needed.
-    // onInputChange(event) {
-    //     console.log(event.target.value);
-    // }
+  // Making use of state so this function is no longer needed.
+  // onInputChange(event) {
+  //     console.log(event.target.value);
+  // }
+
+    // This is a callback function that is called when the user submits the form.
+    // We want to prevent this default behaviour. we dont want the form to submit when the user presses enter.
+    onFormSubmit(event) {
+        event.preventDefault();
+    }
 
     state = { term: "" };
 
     render() {
         return (
             <div className="ui segment">
-                <form className="ui form">
+                <form onSubmit={(event) => this.onFormSubmit(event)} className="ui form">
                     <div className="field">
                         <label>Search Images</label>
                         {/* When we pass a method to a prop like this,
@@ -25,9 +31,9 @@ class SearchBar extends React.Component {
                             value={this.state.term}
                             onChange={(e) => this.setState({ term: e.target.value })}
                         />
-                </div>
-            </form>
-        </div>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
