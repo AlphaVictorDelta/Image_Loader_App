@@ -9,8 +9,12 @@ class SearchBar extends React.Component {
 
     // This is a callback function that is called when the user submits the form.
     // We want to prevent this default behaviour. we dont want the form to submit when the user presses enter.
-    onFormSubmit(event) {
+    onFormSubmit = (event) => {
         event.preventDefault();
+        // Sending search term from child to parent 'App.js'!!
+        // Explanation: Whenever the user submits the form,
+        // the SearchBar component is going to call the callback inside the App component with whatever search term the user entered.
+        this.props.onSubmit(this.state.term);
     }
 
     state = { term: "" };
@@ -18,7 +22,7 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="ui segment">
-                <form onSubmit={(event) => this.onFormSubmit(event)} className="ui form">
+                <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Search Images</label>
                         {/* When we pass a method to a prop like this,
