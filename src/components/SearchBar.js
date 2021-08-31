@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
   // }
 
     // This is a callback function that is called when the user submits the form.
-    // We want to prevent this default behaviour. we dont want the form to submit when the user presses enter.
+    // We want to prevent this default behaviour. we don't want the form to submit when the user presses enter.
     onFormSubmit = (event) => {
         event.preventDefault();
         // Sending search term from child to parent 'App.js'!!
