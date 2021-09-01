@@ -4,7 +4,7 @@ class ImageCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { loaded: false };
+        this.state = { loaded: false, spans: 0 };
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
         this.imageRef = React.createRef();
     }
@@ -16,17 +16,20 @@ class ImageCard extends React.Component {
         }
     }
 
+    // Function to handle the image loading event.
     handleImageLoaded() {
         if (!this.state.loaded) {
             this.setState({ loaded: true });
-            console.log(this.imageRef.current.clientHeight);
+            const height = (this.imageRef.current.clientHeight);
+            this.setState({ spans: Math.ceil(height / 10) });
         }
     }
+
 
     render() {
         const { description, urls } = this.props.image;
         return (
-            <div>
+            <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
                 <img ref={this.imageRef} alt={description} src={urls.regular} onLoad={this.handleImageLoaded} />
             </div>
         );
